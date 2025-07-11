@@ -6,125 +6,68 @@
   <title>Art Portfolio</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for social icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
   <style>
-    /* ─── MINIMAL SALMON PALETTE ───────────────────────────── */
+    /* ─── PALETTE ─────────────────────────────────────────── */
     :root {
-      --accent: #e57777;      /* primary accent */
-      --bg-light: #fff7f6;    /* very light salmon */
-      --text: #2f2a2a;        /* almost black */
+      --accent: #e57777;
+      --bg-light: #fff7f6;
+      --text: #2f2a2a;
     }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:'Poppins',sans-serif;color:var(--text);background:var(--bg-light);min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;height:auto}
 
-    /* ─── RESET / BASE ─────────────────────────────────────── */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      color: var(--text);
-      background: var(--bg-light);
-      min-height: 100vh;
-    }
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; height: auto; display: block; }
+    /* ─── NAVBAR ─────────────────────────────────────────── */
+    header{position:fixed;top:0;left:0;width:100%;display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:rgba(255,255,255,.85);backdrop-filter:blur(6px);z-index:10}
+    nav a{margin-left:1.5rem;font-weight:500;transition:color .2s}
+    nav a:hover{color:var(--accent)}
 
-    /* ─── NAVBAR ───────────────────────────────────────────── */
-    header {
-      width: 100%;
-      position: fixed;
-      top: 0; left: 0;
-      background: rgba(255,255,255,.8);
-      backdrop-filter: blur(6px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      z-index: 10;
-    }
-    nav a { margin-left: 1.5rem; font-weight: 500; transition: color .2s; }
-    nav a:hover { color: var(--accent); }
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero{display:grid;grid-template-columns:7fr 5fr;column-gap:4rem;min-height:100vh;margin-top:72px;padding-right:2rem;}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;padding-right:0;column-gap:0}}
+    .hero-img img{width:100%;height:100%;object-fit:cover}
+    .hero-text{display:flex;flex-direction:column;justify-content:center;background:linear-gradient(90deg,rgba(255,255,255,.95) 0%,rgba(255,255,255,.9) 100%);padding:0 3rem}
+    @media(max-width:900px){.hero-text{padding:2rem 1.5rem}}
 
-    /* ─── HERO (picture‑first split) ───────────────────────── */
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 100vh;
-      margin-top: 72px; /* header height offset */
-    }
-    .hero-img { position: relative; }
-    .hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .hero-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 2rem;
-      background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%);
-    }
-    .hero-text h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .hero-text p { max-width: 480px; line-height: 1.6; margin-bottom: 2rem; }
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: #fff;
-      padding: .7rem 1.6rem;
-      border-radius: 4px;
-      font-size: .9rem;
-      transition: background .2s;
-    }
-    .btn:hover { background: #cb6666; }
+    /* placeholder styles (user will replace) */
+    .hero-text h1{font-size:3.2rem;font-weight:700;color:var(--accent);margin-bottom:1.5rem}
+    .hero-text p{max-width:480px;line-height:1.6;margin-bottom:2.5rem}
+    .btn{display:inline-block;background:var(--accent);color:#fff;padding:.75rem 1.8rem;border-radius:4px;font-size:.9rem;transition:background .2s}
+    .btn:hover{background:#cb6666}
 
-    /* ─── WORKS SECTION ───────────────────────────────────── */
-    .works {
-      background: #fff;
-      padding: 4rem 0 5rem;
-    }
-    .section-title {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 600;
-      margin-bottom: 3rem;
-    }
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      padding: 0 2rem;
-      margin: 0 auto;
-    }
-    .gallery img { border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.12); transition: transform .3s ease; }
-    .gallery img:hover { transform: scale(1.02); }
+    /* ─── SOCIAL BAR ─────────────────────────────────────── */
+    .social-bar{position:fixed;right:1.5rem;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:1rem;z-index:9}
+    .social-bar .label{writing-mode:vertical-rl;text-orientation:mixed;font-size:.9rem;letter-spacing:.05em;margin-bottom:.5rem}
+    .social-bar .line{width:1px;height:80px;background:var(--text);opacity:.4}
+    .social-bar a{font-size:1.1rem;opacity:.8;transition:opacity .2s}
+    .social-bar a:hover{opacity:1}
+    @media(max-width:900px){.social-bar{display:none}}
 
-    /* ─── RESPONSIVE ──────────────────────────────────────── */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-img { height: 60vh; }
-      .hero-text { padding: 2rem 1.5rem; }
-    }
-    @media (max-width: 600px) {
-      .hero-text h1 { font-size: 2.2rem; }
-    }
+    /* ─── WORKS SLIDER ───────────────────────────────────── */
+    .works{background:#fff;padding:5rem 0 6rem}
+    .section-title{text-align:center;font-size:2.2rem;font-weight:600;margin-bottom:3rem}
+    .slider-wrapper{position:relative;max-width:1200px;margin:0 auto}
+    .slider-container{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;gap:1.5rem;padding:0 2rem}
+    .slider-container::-webkit-scrollbar{display:none}
+    .slider-container img{flex:0 0 80%;max-width:80%;border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.12);scroll-snap-align:center;transition:transform .3s}
+    @media(max-width:700px){.slider-container img{flex:0 0 90%;max-width:90%}}
+    .slider-container img:hover{transform:scale(1.02)}
+    .arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.4);color:#fff;border:none;border-radius:50%;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:background .2s}
+    .arrow:hover{background:rgba(0,0,0,.6)}
+    .arrow.left{left:10px}
+    .arrow.right{right:10px}
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    footer{text-align:center;padding:1.5rem 0;background:#fff}
   </style>
-  <script>
-    // simple smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
-      });
-    });
-  </script>
 </head>
 <body>
   <!-- NAV -->
   <header>
-    <div style="font-weight:600;">Gokce</div>
+    <div style="font-weight:600;">LOGO</div>
     <nav>
       <a href="#about">About</a>
       <a href="#works">Works</a>
@@ -132,38 +75,63 @@
     </nav>
   </header>
 
+  <!-- SOCIAL BAR -->
+  <div class="social-bar">
+    <span class="label">Follow me</span>
+    <span class="line"></span>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+
   <!-- HERO -->
   <section class="hero" id="about">
     <div class="hero-img">
-      <!-- Replace with your own hero image -->
       <img src="assets/hero.jpg" alt="Featured artwork" />
     </div>
     <div class="hero-text">
-      <h1>Gokce</h1>
-      <p>
-        I’m a freelance illustrator specialising in character design, editorial pieces and narrative art. My work combines vibrant palettes with subtle textures to bring stories to life.
-      </p>
+      <!-- You can replace or remove this placeholder heading/text -->
+      <h1>Headline Goes Here</h1>
+      <p>Use this space for a short, impactful statement or leave it blank and create a full About page instead.</p>
       <a class="btn" href="#works">View My Work</a>
     </div>
   </section>
 
-  <!-- WORKS -->
+  <!-- WORKS SLIDER -->
   <section class="works" id="works">
     <h2 class="section-title">Works</h2>
-    <div class="gallery">
-      <img src="assets/art1.jpg" alt="Artwork 1" />
-      <img src="assets/art2.jpg" alt="Artwork 2" />
-      <img src="assets/art3.jpg" alt="Artwork 3" />
-      <img src="assets/art4.jpg" alt="Artwork 4" />
-      <img src="assets/art5.jpg" alt="Artwork 5" />
-      <img src="assets/art6.jpg" alt="Artwork 6" />
+    <div class="slider-wrapper">
+      <button class="arrow left" aria-label="Previous">&#10094;</button>
+      <div class="slider-container">
+        <!-- Replace the src paths with your own artwork -->
+        <img src="assets/art1.jpg" alt="Artwork 1" />
+        <img src="assets/art2.jpg" alt="Artwork 2" />
+        <img src="assets/art3.jpg" alt="Artwork 3" />
+        <img src="assets/art4.jpg" alt="Artwork 4" />
+        <img src="assets/art5.jpg" alt="Artwork 5" />
+        <img src="assets/art6.jpg" alt="Artwork 6" />
+      </div>
+      <button class="arrow right" aria-label="Next">&#10095;</button>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer style="text-align:center;padding:1.5rem 0;background:#fff;">
-    © <span id="year"></span> Gokce · All rights reserved
+  <footer>
+    © <span id="year"></span> · All rights reserved
   </footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+      link.addEventListener('click',e=>{e.preventDefault();document.querySelector(link.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});});
+    });
+
+    // slider arrows
+    const container=document.querySelector('.slider-container');
+    document.querySelector('.arrow.left').onclick=()=>{container.scrollBy({left:-container.clientWidth,behavior:'smooth'});} 
+    document.querySelector('.arrow.right').onclick=()=>{container.scrollBy({left:container.clientWidth,behavior:'smooth'});} 
+  </script>
 </body>
 </html>
