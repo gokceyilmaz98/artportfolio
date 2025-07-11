@@ -51,7 +51,10 @@
     @media(max-width:900px){ .about-home { grid-template-columns:1fr; } }
     .about-home .img-wrap { background: none; }
     .about-home .img-wrap img { width:100%; height:auto; display:block; }
-    .about-home .about-text { padding:5rem 2rem; background:#fff; }
+    .about-home .about-text {
+      padding: 5rem 2rem;
+      background: var(--accent-light); /* light salmon background */
+    }
     .about-home .about-text h2 { font-family:'Playfair Display', serif; font-size:2.2rem; margin-bottom:1rem; }
     .about-home .about-text p { font-family:'Playfair Display', serif; line-height:1.6; color:var(--text); }
 
@@ -74,7 +77,10 @@
     <div class="hero-img">
       <img src="assets/hero.jpg" alt="Featured artwork" />
     </div>
-    <div class="hero-text"></div>
+    <div class="hero-text">
+      <!-- To add an overlay or secondary image here, upload your image (e.g., overlay.jpg) into assets/ and use the img tag below: -->
+      <img src="assets/overlay.jpg" alt="Decorative Overlay" style="width:100%;height:auto;object-fit:cover;">
+    </div>
   </section>
 
   <section class="works" id="works">
