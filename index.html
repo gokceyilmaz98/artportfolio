@@ -3,31 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Art Portfolio</title>
+  <title>Art Portfolio</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ─── PALETTE ─────────────────────────────────────────────── */
+    /* ─── SALMON‑TONED PALETTE ─────────────────────────────── */
     :root {
-      --accent: #b46756;      /* buttons / links */
-      --bg1: 	#F08080;         
-      --text: #922b21;
+      --accent: #e06b6b;      /* buttons / links – subtle salmon */
+      --bg1: #fff2f0;         /* very pale salmon */
+      --bg2: #ffe9e7;         /* peach tint */
+      --bg3: #ffdfdd;         /* soft coral */
+      --bg4: #ffe9e7;         /* repeat for smooth blend */
+      --bg5: #fff6f5;         /* near‑white */
+      --text: #342e2e;
     }
-    /* ─── GLOBAL RESET ───────────────────────────────────────── */
+
+    /* ─── GLOBAL RESET ────────────────────────────────────── */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
       color: var(--text);
-      /* ✨ multi‑color blended background on top section */
+      /* top section gradient */
       background: linear-gradient(130deg, var(--bg1) 0%, var(--bg2) 25%, var(--bg3) 50%, var(--bg4) 75%, var(--bg5) 100%);
-      background-attachment: fixed; /* subtle parallax */
+      background-attachment: fixed;
       min-height: 100vh;
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ─── TOP NAV ─────────────────────────────────────────────── */
+    /* ─── NAVBAR ──────────────────────────────────────────── */
     header {
-      background: rgba(255,255,255,.6); /* translucent over gradient */
+      background: rgba(255,255,255,.6);
       backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
@@ -39,7 +44,7 @@
     nav a { margin-left: 1.5rem; font-weight: 500; transition: color .2s; }
     nav a:hover { color: var(--accent); }
 
-    /* ─── HERO SECTION ───────────────────────────────────────── */
+    /* ─── HERO ────────────────────────────────────────────── */
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -57,8 +62,8 @@
       line-height: 1.2;
       margin-bottom: 1rem;
     }
-    .social-icons a { margin-right: .75rem; font-size: 1.1rem; }
     .hero-text p { margin: 1rem 0 2rem; max-width: 480px; }
+
     .btn {
       display: inline-block;
       background: var(--accent);
@@ -69,7 +74,7 @@
       font-size: .9rem;
       transition: background .2s;
     }
-    .btn:hover { background: #228174; }
+    .btn:hover { background: #c95c5c; }
     .btn.outline {
       background: transparent;
       color: var(--accent);
@@ -80,9 +85,9 @@
     .hero-img { flex: 1 1 320px; }
     .hero-img img { width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
 
-    /* ─── WORKS SECTION ─────────────────────────────────────── */
+    /* ─── WORKS SECTION (white background) ───────────────── */
     .works{
-      background:#fff; /* solid white backdrop for art grid */
+      background:#fff;
       padding: 3rem 0 4rem;
     }
     .section-title{
@@ -93,7 +98,7 @@
       color:var(--text);
     }
 
-    /* ─── GALLERY GRID ───────────────────────────────────────── */
+    /* ─── GALLERY GRID ────────────────────────────────────── */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -123,7 +128,7 @@
 <body>
   <!-- ★ NAVBAR ★ -->
   <header>
-    <h1>My Art Works</h1>
+    <h1>My Works</h1>
     <nav>
       <a href="#about">About</a>
       <a href="#works">Works</a>
@@ -135,10 +140,7 @@
   <section class="hero" id="about">
     <div class="hero-text">
       <h2>Illustrator, Designer</h2>
-      <h1>Your Name</h1>
-      <div class="social-icons">
-        <a href="#">✕</a><a href="#">✏️</a><a href="#">📷</a><a href="#">✉️</a>
-      </div>
+      <h1>Gokce</h1>
       <p>
         A freelance illustrator from Example City. I specialise in character design for smartphone games, magazine illustrations, and light‑novel frontispieces. Awarded the Excellence Prize in the 2021 XYZ Illustration Contest.
       </p>
@@ -165,7 +167,7 @@
 
   <!-- ★ FOOTER ★ -->
   <footer style="text-align:center;padding:1rem 0;background:#fff;">
-    © <span id="year"></span> Your Name · All rights reserved
+    © <span id="year"></span> Gokce · All rights reserved
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
