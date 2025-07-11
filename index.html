@@ -7,18 +7,40 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* ─── PALETTE ─────────────────────────────────────────────── */
     :root {
-      --accent: #f99f8c;
-      --bg: #CCCCFF;
+      --accent: #2f9c95;      /* buttons / links */
+      --bg1: #dff4ff;         /* gradient stop 1 */
+      --bg2: #ffe8f3;         /* gradient stop 2 */
+      --bg3: #fffbe8;         /* gradient stop 3 */
+      --bg4: #e8fff5;         /* gradient stop 4 */
+      --bg5: #e8e8ff;         /* gradient stop 5 */
       --text: #333;
     }
+    /* ─── GLOBAL RESET ───────────────────────────────────────── */
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--text);
+      /* ✨ multi‑color blended background */
+      background: linear-gradient(130deg, var(--bg1) 0%, var(--bg2) 25%, var(--bg3) 50%, var(--bg4) 75%, var(--bg5) 100%);
+      background-attachment: fixed; /* subtle parallax */
+      min-height: 100vh;
+    }
+    /* If you’d rather use a single photo instead, comment the gradient above and uncomment ↓ */
+    /* body::before {
+        content: "";
+        position: fixed; inset: 0; z-index: -1;
+        background: url('assets/background.jpg') center/cover no-repeat;
+        filter: brightness(.8);   -- optional darken for contrast
+    } */
+
     a { color: inherit; text-decoration: none; }
 
-    /* ─── top nav ────────────────────────────────────────────── */
+    /* ─── TOP NAV ─────────────────────────────────────────────── */
     header {
-      background: var(--bg);
+      background: rgba(255,255,255,.6); /* translucent over gradient */
+      backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -26,10 +48,10 @@
       box-shadow: 0 2px 4px rgba(0,0,0,.05);
     }
     header h1 { font-size: 1.1rem; font-weight: 600; }
-    nav a { margin-left: 1.5rem; font-weight: 500; }
+    nav a { margin-left: 1.5rem; font-weight: 500; transition: color .2s; }
     nav a:hover { color: var(--accent); }
 
-    /* ─── hero section ───────────────────────────────────────── */
+    /* ─── HERO SECTION ───────────────────────────────────────── */
     .hero {
       display: flex;
       flex-wrap: wrap;
@@ -47,10 +69,7 @@
       line-height: 1.2;
       margin-bottom: 1rem;
     }
-    .social-icons a {
-      margin-right: .75rem;
-      font-size: 1.1rem;
-    }
+    .social-icons a { margin-right: .75rem; font-size: 1.1rem; }
     .hero-text p { margin: 1rem 0 2rem; max-width: 480px; }
     .btn {
       display: inline-block;
@@ -60,13 +79,20 @@
       border-radius: 4px;
       margin-right: .8rem;
       font-size: .9rem;
+      transition: background .2s;
     }
-    .btn.outline { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .btn:hover { background: #228174; }
+    .btn.outline {
+      background: transparent;
+      color: var(--accent);
+      border: 2px solid var(--accent);
+    }
+    .btn.outline:hover { background: var(--accent); color:#fff; }
 
     .hero-img { flex: 1 1 320px; }
     .hero-img img { width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
 
-    /* ─── filter / categories ───────────────────────────────── */
+    /* ─── FILTER BUTTONS ─────────────────────────────────────── */
     .filters {
       display: flex;
       gap: 1rem;
@@ -76,17 +102,19 @@
       flex-wrap: wrap;
     }
     .filters button {
-      background: transparent;
+      background: rgba(255,255,255,.4);
+      backdrop-filter: blur(4px);
       border: none;
       padding: .4rem 1rem;
       font: inherit;
       cursor: pointer;
       border-radius: 20px;
+      transition: background .2s;
     }
     .filters button.active,
     .filters button:hover { background: var(--accent); color: #fff; }
 
-    /* ─── gallery grid ──────────────────────────────────────── */
+    /* ─── GALLERY GRID ───────────────────────────────────────── */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -96,16 +124,13 @@
       margin: 0 auto 3rem;
     }
     .gallery img { width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.12); }
-    /* optional simple fade-in */
     .gallery img { opacity: 0; transform: translateY(20px); transition: all .6s ease; }
     .gallery img.loaded { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 600px){
-      .hero-text h1 { font-size: 2rem; }
-    }
+    @media (max-width: 600px){ .hero-text h1 { font-size: 2rem; } }
   </style>
   <script>
-    // tiny helper to mark images loaded for fade-in effect
+    // fade‑in helper
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.gallery img').forEach(img => {
         if(img.complete) img.classList.add('loaded');
@@ -115,7 +140,6 @@
   </script>
 </head>
 <body>
-  <!--  NAVBAR  -->
   <header>
     <h1>My Works</h1>
     <nav>
@@ -125,19 +149,15 @@
     </nav>
   </header>
 
-  <!--  HERO SECTION  -->
   <section class="hero" id="about">
     <div class="hero-text">
-      <h2>Designer, Artist</h2>
-      <h1>Gokce Yilmaz</h1>
+      <h2>Illustrator, Designer</h2>
+      <h1>Your Name</h1>
       <div class="social-icons">
-        <!-- replace # with real links → icons from simple unicode or FontAwesome if you add it -->
         <a href="#">✕</a><a href="#">✏️</a><a href="#">📷</a><a href="#">✉️</a>
       </div>
       <p>
-        A freelance illustrator from Example City.<br />
-        I specialise in character design for smartphone games, magazine illustrations, and light‑novel frontispieces.
-        Awarded the Excellence Prize in the 2021 XYZ Illustration Contest.
+        A freelance illustrator from Example City. I specialise in character design for smartphone games, magazine illustrations, and light‑novel frontispieces. Awarded the Excellence Prize in the 2021 XYZ Illustration Contest.
       </p>
       <a class="btn" href="#contact">Contact</a>
       <a class="btn outline" href="#about">About</a>
@@ -147,7 +167,6 @@
     </div>
   </section>
 
-  <!--  FILTER BUTTONS  -->
   <div class="filters" id="works">
     <button class="active">All</button>
     <button>Original</button>
@@ -156,9 +175,7 @@
     <button>Icon</button>
   </div>
 
-  <!-- ★ GALLERY GRID ★ -->
   <section class="gallery">
-    <!-- duplicate <img> blocks and change src filenames to your artwork -->
     <img src="assets/art1.jpg" alt="Artwork 1" />
     <img src="assets/art2.jpg" alt="Artwork 2" />
     <img src="assets/art3.jpg" alt="Artwork 3" />
@@ -167,10 +184,10 @@
     <img src="assets/art6.jpg" alt="Artwork 6" />
   </section>
 
-  <!-- ★ FOOTER ★ -->
-  <footer style="text-align:center;padding:1rem 0;background:var(--bg);">
+  <footer style="text-align:center;padding:1rem 0;background:rgba(255,255,255,.4);backdrop-filter:blur(4px);">
     © <span id="year"></span> Your Name · All rights reserved
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
+
