@@ -3,102 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Art Portfolio</title>
+  <title>Gokce · Art Portfolio</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* ─── SALMON‑TONED PALETTE ─────────────────────────────── */
+    /* ─── MINIMAL SALMON PALETTE ───────────────────────────── */
     :root {
-      --accent: #e06b6b;      /* buttons / links – subtle salmon */
-      --bg1: #fff2f0;         /* very pale salmon */
-      --bg2: #ffe9e7;         /* peach tint */
-      --bg3: #ffdfdd;         /* soft coral */
-      --bg4: #ffe9e7;         /* repeat for smooth blend */
-      --bg5: #fff6f5;         /* near‑white */
-      --text: #342e2e;
+      --accent: #e57777;      /* primary accent */
+      --bg-light: #fff7f6;    /* very light salmon */
+      --text: #2f2a2a;        /* almost black */
     }
 
-    /* ─── GLOBAL RESET ────────────────────────────────────── */
+    /* ─── RESET / BASE ─────────────────────────────────────── */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
       color: var(--text);
-      /* top section gradient */
-      background: linear-gradient(130deg, var(--bg1) 0%, var(--bg2) 25%, var(--bg3) 50%, var(--bg4) 75%, var(--bg5) 100%);
-      background-attachment: fixed;
+      background: var(--bg-light);
       min-height: 100vh;
     }
     a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
 
-    /* ─── NAVBAR ──────────────────────────────────────────── */
+    /* ─── NAVBAR ───────────────────────────────────────────── */
     header {
-      background: rgba(255,255,255,.6);
+      width: 100%;
+      position: fixed;
+      top: 0; left: 0;
+      background: rgba(255,255,255,.8);
       backdrop-filter: blur(6px);
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,.05);
+      z-index: 10;
     }
-    header h1 { font-size: 1.1rem; font-weight: 600; }
     nav a { margin-left: 1.5rem; font-weight: 500; transition: color .2s; }
     nav a:hover { color: var(--accent); }
 
-    /* ─── HERO ────────────────────────────────────────────── */
+    /* ─── HERO (picture‑first split) ───────────────────────── */
     .hero {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      align-items: center;
-      padding: 3rem 2rem 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+      margin-top: 72px; /* header height offset */
     }
-    .hero-text { flex: 1 1 320px; }
-    .hero-text h2 { font-weight: 300; margin-bottom: .5rem; }
+    .hero-img { position: relative; }
+    .hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 2rem;
+      background: linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.8) 100%);
+    }
     .hero-text h1 {
+      font-size: 3rem;
+      font-weight: 700;
       color: var(--accent);
-      font-size: 2.5rem;
-      line-height: 1.2;
       margin-bottom: 1rem;
     }
-    .hero-text p { margin: 1rem 0 2rem; max-width: 480px; }
-
+    .hero-text p { max-width: 480px; line-height: 1.6; margin-bottom: 2rem; }
     .btn {
       display: inline-block;
       background: var(--accent);
       color: #fff;
-      padding: .6rem 1.4rem;
+      padding: .7rem 1.6rem;
       border-radius: 4px;
-      margin-right: .8rem;
       font-size: .9rem;
       transition: background .2s;
     }
-    .btn:hover { background: #c95c5c; }
-    .btn.outline {
-      background: transparent;
-      color: var(--accent);
-      border: 2px solid var(--accent);
-    }
-    .btn.outline:hover { background: var(--accent); color:#fff; }
+    .btn:hover { background: #cb6666; }
 
-    .hero-img { flex: 1 1 320px; }
-    .hero-img img { width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
-
-    /* ─── WORKS SECTION (white background) ───────────────── */
-    .works{
-      background:#fff;
-      padding: 3rem 0 4rem;
+    /* ─── WORKS SECTION ───────────────────────────────────── */
+    .works {
+      background: #fff;
+      padding: 4rem 0 5rem;
     }
-    .section-title{
-      text-align:center;
-      font-size:2rem;
-      font-weight:600;
-      margin-bottom:2rem;
-      color:var(--text);
+    .section-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 3rem;
     }
-
-    /* ─── GALLERY GRID ────────────────────────────────────── */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -107,28 +98,33 @@
       padding: 0 2rem;
       margin: 0 auto;
     }
-    .gallery img {
-      width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.12);
-      opacity: 0; transform: translateY(20px); transition: all .6s ease;
-    }
-    .gallery img.loaded { opacity: 1; transform: translateY(0); }
+    .gallery img { border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.12); transition: transform .3s ease; }
+    .gallery img:hover { transform: scale(1.02); }
 
-    @media (max-width: 600px){ .hero-text h1 { font-size: 2rem; } }
+    /* ─── RESPONSIVE ──────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-img { height: 60vh; }
+      .hero-text { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-text h1 { font-size: 2.2rem; }
+    }
   </style>
   <script>
-    // fade‑in helper
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.gallery img').forEach(img => {
-        if(img.complete) img.classList.add('loaded');
-        else img.addEventListener('load', () => img.classList.add('loaded'));
+    // simple smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
       });
     });
   </script>
 </head>
 <body>
-  <!-- ★ NAVBAR ★ -->
+  <!-- NAV -->
   <header>
-    <h1>My Works</h1>
+    <div style="font-weight:600;">Gokce</div>
     <nav>
       <a href="#about">About</a>
       <a href="#works">Works</a>
@@ -136,23 +132,22 @@
     </nav>
   </header>
 
-  <!-- ★ HERO SECTION ★ -->
+  <!-- HERO -->
   <section class="hero" id="about">
-    <div class="hero-text">
-      <h2>Illustrator, Designer</h2>
-      <h1>Gökce Yılmaz</h1>
-      <p>
-        A freelance illustrator from Example City. I specialise in character design for smartphone games, magazine illustrations, and light‑novel frontispieces. Awarded the Excellence Prize in the 2021 XYZ Illustration Contest.
-      </p>
-      <a class="btn" href="#contact">Contact</a>
-      <a class="btn outline" href="#about">About</a>
-    </div>
     <div class="hero-img">
+      <!-- Replace with your own hero image -->
       <img src="assets/hero.jpg" alt="Featured artwork" />
+    </div>
+    <div class="hero-text">
+      <h1>Gokce</h1>
+      <p>
+        I’m a freelance illustrator specialising in character design, editorial pieces and narrative art. My work combines vibrant palettes with subtle textures to bring stories to life.
+      </p>
+      <a class="btn" href="#works">View My Work</a>
     </div>
   </section>
 
-  <!-- ★ WORKS SECTION ★ -->
+  <!-- WORKS -->
   <section class="works" id="works">
     <h2 class="section-title">Works</h2>
     <div class="gallery">
@@ -165,8 +160,8 @@
     </div>
   </section>
 
-  <!-- ★ FOOTER ★ -->
-  <footer style="text-align:center;padding:1rem 0;background:#fff;">
+  <!-- FOOTER -->
+  <footer style="text-align:center;padding:1.5rem 0;background:#fff;">
     © <span id="year"></span> Gokce · All rights reserved
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
