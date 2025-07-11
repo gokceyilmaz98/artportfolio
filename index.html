@@ -22,19 +22,11 @@
     body {
       font-family: 'Poppins', sans-serif;
       color: var(--text);
-      /* ✨ multi‑color blended background */
+      /* ✨ multi‑color blended background on top section */
       background: linear-gradient(130deg, var(--bg1) 0%, var(--bg2) 25%, var(--bg3) 50%, var(--bg4) 75%, var(--bg5) 100%);
       background-attachment: fixed; /* subtle parallax */
       min-height: 100vh;
     }
-    /* If you’d rather use a single photo instead, comment the gradient above and uncomment ↓ */
-    /* body::before {
-        content: "";
-        position: fixed; inset: 0; z-index: -1;
-        background: url('assets/background.jpg') center/cover no-repeat;
-        filter: brightness(.8);   -- optional darken for contrast
-    } */
-
     a { color: inherit; text-decoration: none; }
 
     /* ─── TOP NAV ─────────────────────────────────────────────── */
@@ -57,7 +49,7 @@
       flex-wrap: wrap;
       gap: 2rem;
       align-items: center;
-      padding: 3rem 2rem;
+      padding: 3rem 2rem 4rem;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -92,27 +84,18 @@
     .hero-img { flex: 1 1 320px; }
     .hero-img img { width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
 
-    /* ─── FILTER BUTTONS ─────────────────────────────────────── */
-    .filters {
-      display: flex;
-      gap: 1rem;
-      padding: 1rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      flex-wrap: wrap;
+    /* ─── WORKS SECTION ─────────────────────────────────────── */
+    .works{
+      background:#fff; /* solid white backdrop for art grid */
+      padding: 3rem 0 4rem;
     }
-    .filters button {
-      background: rgba(255,255,255,.4);
-      backdrop-filter: blur(4px);
-      border: none;
-      padding: .4rem 1rem;
-      font: inherit;
-      cursor: pointer;
-      border-radius: 20px;
-      transition: background .2s;
+    .section-title{
+      text-align:center;
+      font-size:2rem;
+      font-weight:600;
+      margin-bottom:2rem;
+      color:var(--text);
     }
-    .filters button.active,
-    .filters button:hover { background: var(--accent); color: #fff; }
 
     /* ─── GALLERY GRID ───────────────────────────────────────── */
     .gallery {
@@ -120,11 +103,13 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
       max-width: 1200px;
-      padding: 2rem;
-      margin: 0 auto 3rem;
+      padding: 0 2rem;
+      margin: 0 auto;
     }
-    .gallery img { width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.12); }
-    .gallery img { opacity: 0; transform: translateY(20px); transition: all .6s ease; }
+    .gallery img {
+      width: 100%; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.12);
+      opacity: 0; transform: translateY(20px); transition: all .6s ease;
+    }
     .gallery img.loaded { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 600px){ .hero-text h1 { font-size: 2rem; } }
@@ -140,6 +125,7 @@
   </script>
 </head>
 <body>
+  <!-- ★ NAVBAR ★ -->
   <header>
     <h1>My Works</h1>
     <nav>
@@ -149,6 +135,7 @@
     </nav>
   </header>
 
+  <!-- ★ HERO SECTION ★ -->
   <section class="hero" id="about">
     <div class="hero-text">
       <h2>Illustrator, Designer</h2>
@@ -167,27 +154,23 @@
     </div>
   </section>
 
-  <div class="filters" id="works">
-    <button class="active">All</button>
-    <button>Original</button>
-    <button>Character Design</button>
-    <button>Fanart</button>
-    <button>Icon</button>
-  </div>
-
-  <section class="gallery">
-    <img src="assets/art1.jpg" alt="Artwork 1" />
-    <img src="assets/art2.jpg" alt="Artwork 2" />
-    <img src="assets/art3.jpg" alt="Artwork 3" />
-    <img src="assets/art4.jpg" alt="Artwork 4" />
-    <img src="assets/art5.jpg" alt="Artwork 5" />
-    <img src="assets/art6.jpg" alt="Artwork 6" />
+  <!-- ★ WORKS SECTION ★ -->
+  <section class="works" id="works">
+    <h2 class="section-title">Works</h2>
+    <div class="gallery">
+      <img src="assets/art1.jpg" alt="Artwork 1" />
+      <img src="assets/art2.jpg" alt="Artwork 2" />
+      <img src="assets/art3.jpg" alt="Artwork 3" />
+      <img src="assets/art4.jpg" alt="Artwork 4" />
+      <img src="assets/art5.jpg" alt="Artwork 5" />
+      <img src="assets/art6.jpg" alt="Artwork 6" />
+    </div>
   </section>
 
-  <footer style="text-align:center;padding:1rem 0;background:rgba(255,255,255,.4);backdrop-filter:blur(4px);">
+  <!-- ★ FOOTER ★ -->
+  <footer style="text-align:center;padding:1rem 0;background:#fff;">
     © <span id="year"></span> Your Name · All rights reserved
   </footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
-
